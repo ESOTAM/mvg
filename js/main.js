@@ -79,4 +79,89 @@
 })(jQuery);
 
 
-alert(111111);
+//////////////7
+
+
+ var config = {
+    apiKey: "AIzaSyDDeEsPxBYxzisg4GDOpmYbHBLvIw6L_IY",
+    authDomain: "mejorvargaslleras-4fd2e.firebaseapp.com",
+    databaseURL: "https://mejorvargaslleras-4fd2e.firebaseio.com",
+    projectId: "mejorvargaslleras-4fd2e",
+    storageBucket: "mejorvargaslleras-4fd2e.appspot.com",
+    messagingSenderId: "912759721594"
+  };
+  firebase.initializeApp(config);
+
+
+
+unavesmensaje("mensajedos");
+unavesmensaje("user");
+function unavesmensaje(ref)
+{
+
+  firebase.database().ref().child("user").once('value').then(function(snapshot) {
+    var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+    // ...
+    //alert(  snapshot.val());
+    mi=snapshot.val();
+var s=mi;// firebase.database().ref().child("user");
+console.log(s);
+
+for (var indice in s) {
+  console.log("ind'" + indice + "'= " + s[indice]);
+}
+
+ 
+   // document.getElementById("idcumplimiento").innerHTML = snapshot.val();
+  });
+
+
+}
+
+
+//subirdatos("user","cedula","33311111111");
+
+
+//nuevochid(nodo,nombre,cedula,celular,direccion,email,departamento,municipio);
+function subirdatos(ref1,ref2,mn){
+
+    //firebase.database().ref().child(ref1).value(String(mn));
+   // firebase.database().ref().child(ref1).push(String(mn));
+
+        // var person = {fname:"Johns", lname:"Does", age:27}; 
+    //  firebase.database().ref().child(ref1).push(person);
+
+            var person = {nombre:"Johns",whatsapp:"Does", cedula:"Does",email:"Does",
+            departamento:"Does",municipio:"Does",direccion:"Does"}; 
+      firebase.database().ref().child(ref1).push(person);
+}
+
+function nuevochid(nodo,nombre1, cedula1, celular1, direccion1 , email1, departamento1,municipio1){
+     
+// entienda que no importa si se llama diez veces esata funcion alla en firebase  en el nod que  
+// le asigne aparecera unnuenvo nodo hijo un child 
+
+        var person = {nombre:nombre1,whatsapp:celular1,
+         cedula:cedula1,email:email1,departamento:departamento1,
+         municipio:municipio1,direccion:direccion1}; 
+      firebase.database().ref().child(nodo).push(person);
+
+}
+
+function myFunction(){
+
+  document.getElementById("sele").value;
+    alert(document.getElementById("sele").value);
+
+var nodo="user";
+var nombre=document.getElementById("nombre").value;;
+var departamento=document.getElementById("sele").value;;
+var municipio=document.getElementById("municipio").value;;
+var celular=document.getElementById("celular").value;;
+var email=document.getElementById("email").value;;
+var direccion=document.getElementById("direccion").value;;
+var cedula=document.getElementById("cedula").value;;
+
+nuevochid(nodo,nombre,cedula,celular,direccion,email,departamento,municipio);
+}
+
